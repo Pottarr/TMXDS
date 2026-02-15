@@ -10,7 +10,7 @@
     in {
         packages = forAllSystems (system:
         let
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = nixpkgs.legacyPackages.${system};
         in {
             default = pkgs.stdenvNoCC.mkDerivation {
             pname = "tmxds";
@@ -18,7 +18,7 @@
 
             src = self;
 
-            buildInput = [
+            buildInputs = [
                 pkgs.ripgrep
                 pkgs.skim
                 pkgs.tmux
